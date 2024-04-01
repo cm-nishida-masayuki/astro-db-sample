@@ -1,0 +1,16 @@
+---
+import {db, Comment} from 'astro:db'
+
+const comments = await db.select().from(Comment).all();
+---
+
+<h1>Comments</h1>
+
+{
+	comments.map(({authorId, body}) => (
+		<article>
+			<p>Author: {authorId}</p>
+			<p>Body: {body}</p>
+		</article>
+	))
+}
